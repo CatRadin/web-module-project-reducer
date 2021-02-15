@@ -3,12 +3,20 @@ import reducer, { initialState } from './reducers/index';
 import './App.css';
 import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
-import { addOne, applyNumber } from '../src/actions/index';
+import { applyNumber, addOne, changeOperation, clearDisplay, addToMemory, addMemory, clearMemory } from './actions'
 
 function App() {
 //Use the Reducer Hook to get access to the state and dispatch function------------------------
 const [state, dispatch] = useReducer(reducer, initialState);
 console.log("State here",state);
+
+//On Click connected to the 1 button
+
+const handleClickOne = (n) => {
+  console.log("hello")
+  dispatch(addOne(n))
+}
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -32,7 +40,7 @@ console.log("State here",state);
             </div>
 
             <div className="row">
-              <CalcButton value={1}/>
+              <CalcButton value={1} onclick={handleClickOne}/>
               <CalcButton value={2}/>
               <CalcButton value={3}/>
             </div>
